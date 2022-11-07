@@ -1,6 +1,6 @@
 describe Movie do
   let(:movie) { Movie.new }
-  let(:attributes) do 
+  let(:attributes) do
     {
       title: "The Sting",
       release_date: 1973,
@@ -50,7 +50,7 @@ describe Movie do
         titled_movie = Movie.create_with_title("This is a title.")
         expect(titled_movie.title).to eq("This is a title.")
       end
-  
+
       it 'creates a new record in the database' do
         expect { Movie.create_with_title("This is a title.") }.to change(Movie, :count).by(1)
       end
@@ -66,13 +66,13 @@ describe Movie do
       Movie.create(title: "Movie_3", release_date: 2003)
       Movie.create(title: "Movie_4", release_date: 2004)
     end
-    
+
     describe '.first_movie' do
       it 'returns the first item in the movies table' do
         expect(Movie.first_movie.title).to eq("Movie_0")
       end
     end
-    
+
     describe '.last_movie' do
       it 'returns the last item in the movies table' do
         expect(Movie.last_movie.title).to eq("Movie_4")
@@ -116,8 +116,8 @@ describe Movie do
     describe '#update_with_attributes' do
       it 'updates one movie' do
         movie = Movie.create(title: "Awesome Flick")
-  
-        expect do 
+
+        expect do
           movie.update_with_attributes(title: "Even Awesomer Flick")
         end.to change(movie, :title).from("Awesome Flick").to("Even Awesomer Flick")
       end
@@ -127,9 +127,9 @@ describe Movie do
       it 'updates the title of all the movies' do
         Movie.create(title: "Awesome Flick")
         Movie.create(title: "Even Awesomer Flick")
-        
+
         Movie.update_all_titles("Untitled")
-  
+
         expect(Movie.where(title: "Untitled").count).to be(2)
       end
     end
